@@ -5,7 +5,16 @@ import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "../cart/DeleteItem";
 import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 
-function MenuItem({ pizza }) {
+type PizzaType = {
+  id: number;
+  name: string;
+  unitPrice: number;
+  ingredients: string[];
+  soldOut: boolean;
+  imageUrl: string;
+};
+
+function MenuItem({ pizza }: { pizza: PizzaType }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const dispatch = useDispatch();
 

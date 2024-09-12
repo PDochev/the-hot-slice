@@ -12,7 +12,13 @@ export default function UpdateOrder() {
   );
 }
 
-export async function action({ params }) {
+type ActionParams = {
+  params: {
+    orderId: string;
+  };
+};
+
+export async function action({ params }: ActionParams) {
   const data = { priority: true };
   await updateOrder(params.orderId, data);
   return null;

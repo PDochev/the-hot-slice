@@ -1,6 +1,18 @@
-import { formatCurrency } from '../../utils/helpers';
+import { formatCurrency } from "../../utils/helpers";
 
-function OrderItem({ item, isLoadingIngredients, ingredients }) {
+type OrderItemType = {
+  item: {
+    pizzaId: number;
+    name: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
+  };
+  isLoadingIngredients: boolean;
+  ingredients: string[];
+};
+
+function OrderItem({ item, isLoadingIngredients, ingredients }: OrderItemType) {
   const { quantity, name, totalPrice } = item;
 
   return (
@@ -12,7 +24,7 @@ function OrderItem({ item, isLoadingIngredients, ingredients }) {
         <p className="font-bold">{formatCurrency(totalPrice)}</p>
       </div>
       <p className="text-sm capitalize italic text-stone-500">
-        {isLoadingIngredients ? 'Loading...' : ingredients.join(', ')}
+        {isLoadingIngredients ? "Loading..." : ingredients.join(", ")}
       </p>
     </li>
   );

@@ -1,11 +1,18 @@
-import { useLoaderData } from 'react-router-dom';
-import { getMenu } from '../../services/apiRestaurant';
-import MenuItem from './MenuItem';
+import { useLoaderData } from "react-router-dom";
+import { getMenu } from "../../services/apiRestaurant";
+import MenuItem from "./MenuItem";
 
-
+type MenuProps = {
+  id: number;
+  name: string;
+  unitPrice: number;
+  ingredients: string[];
+  soldOut: boolean;
+  imageUrl: string;
+};
 
 function Menu() {
-  const menu = useLoaderData();
+  const menu = useLoaderData() as MenuProps[];
 
   return (
     <ul className="divide-y divide-stone-200 px-2">

@@ -1,23 +1,45 @@
 // Test ID: IIDSAT
 
-import OrderItem from './OrderItem';
+import OrderItem from "./OrderItem";
 
-import { useFetcher, useLoaderData } from 'react-router-dom';
-import { getOrder } from '../../services/apiRestaurant';
+import { useFetcher, useLoaderData } from "react-router-dom";
+import { getOrder } from "../../services/apiRestaurant";
 import {
   calcMinutesLeft,
   formatCurrency,
   formatDate,
-} from '../../utils/helpers';
-import { useEffect } from 'react';
-import UpdateOrder from './UpdateOrder';
+} from "../../utils/helpers";
+import { useEffect } from "react";
+import UpdateOrder from "./UpdateOrder";
+
+type ActionParams = {
+  params: {
+    orderId: string;
+  };
+};
+
+type OrderProps = {
+  id: number;
+  status: string;
+  priority: boolean;
+  priorityPrice: number;
+  orderPrice: number;
+  estimatedDelivery: string;
+  cart: {
+    pizzaId: number;
+    name: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
+  }[];
+};
 
 function Order() {
-  const order = useLoaderData();
+  const order = useLoaderData() as OrderProps;
   const fetcher = useFetcher();
 
   useEffect(() => {
-    if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu');
+    if (!fetcher.data && fetcher.state === "idle") fetcher.load("/menu");
   }, [fetcher]);
 
   // console.log(fetcher.data);
@@ -56,7 +78,7 @@ function Order() {
         <p className="font-medium">
           {deliveryIn >= 0
             ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
-            : 'Order should have arrived'}
+            : "Order should have arrived"}
         </p>
         <p className="text-xs text-stone-500">
           (Estimated delivery: {formatDate(estimatedDelivery)})
@@ -68,7 +90,7 @@ function Order() {
           <OrderItem
             item={item}
             key={item.pizzaId}
-            isLoadingIngredients={fetcher.state === 'loading'}
+            isLoadingIngredients={fetcher.state === "loading"}
             ingredients={
               fetcher?.data?.find((el) => el.id === item.pizzaId)
                 ?.ingredients ?? []
@@ -95,7 +117,7 @@ function Order() {
   );
 }
 
-export async function loader({ params }) {
+export async function loader({ params }: ActionParams) {
   const order = await getOrder(params.orderId);
   return order;
 }
