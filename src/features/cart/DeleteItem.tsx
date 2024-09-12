@@ -1,8 +1,8 @@
-import Button from '../../ui/Button';
-import { useDispatch } from 'react-redux';
-import { deleteItem } from './cartSlice';
+import Button from "../../ui/Button";
+import { useDispatch } from "react-redux";
+import { deleteItem } from "./cartSlice";
 
-export default function DeleteItem({ pizzaId }) {
+export default function DeleteItem({ pizzaId }: { pizzaId: number }) {
   const dispatch = useDispatch();
   return (
     <Button type="small" onClick={() => dispatch(deleteItem(pizzaId))}>

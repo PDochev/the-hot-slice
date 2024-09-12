@@ -9,8 +9,8 @@ const store = configureStore({
   },
 });
 
-export type UserState = ReturnType<typeof userReducer>;
-export type CartState = ReturnType<typeof cartReducer>;
+// export type UserState = ReturnType<typeof userReducer>;
+// export type CartState = ReturnType<typeof cartReducer>;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
