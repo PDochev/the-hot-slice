@@ -16,6 +16,10 @@ const isValidPhone = (str: string) =>
     str
   );
 
+type OrderErrors = {
+  phone?: string;
+};
+
 // const fakeCart = [
 //   {
 //     pizzaId: 12,
@@ -172,7 +176,7 @@ export async function action({ request }) {
     priority: data.priority === "true",
   };
 
-  const errors = {};
+  const errors = {} as OrderErrors
   if (!isValidPhone(order.phone))
     errors.phone =
       "Please give us your correct phone number. We might need it to contact you.";

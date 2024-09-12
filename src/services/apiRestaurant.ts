@@ -1,5 +1,23 @@
 const API_URL = "https://react-fast-pizza-api.onrender.com/api";
 
+type OrderProps = {
+  id: number;
+  status: string;
+  priority: boolean;
+  priorityPrice: number;
+  orderPrice: number;
+  estimatedDelivery: string;
+  cart: {
+    pizzaId: number;
+    name: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
+  }[];
+};
+
+type UpdateOrderProps = Partial<OrderProps>;
+
 export async function getMenu() {
   const res = await fetch(`${API_URL}/menu`);
 
@@ -18,7 +36,7 @@ export async function getOrder(id: string) {
   return data;
 }
 
-export async function createOrder(newOrder) {
+export async function createOrder(newOrder: OrderProps) {
   try {
     const res = await fetch(`${API_URL}/order`, {
       method: "POST",
@@ -36,7 +54,7 @@ export async function createOrder(newOrder) {
   }
 }
 
-export async function updateOrder(id: string, updateObj) {
+export async function updateOrder(id: string, updateObj: UpdateOrderProps) {
   try {
     const res = await fetch(`${API_URL}/order/${id}`, {
       method: "PATCH",
@@ -48,7 +66,7 @@ export async function updateOrder(id: string, updateObj) {
 
     if (!res.ok) throw Error();
     // We don't need the data, so we don't return anything
-  } catch (err) {
+  } catch {
     throw Error("Failed updating your order");
   }
 }

@@ -18,6 +18,11 @@ type ActionParams = {
   };
 };
 
+type IngredientsProps = {
+  id: number;
+  ingredients: string[];
+};
+
 type OrderProps = {
   id: number;
   status: string;
@@ -92,8 +97,9 @@ function Order() {
             key={item.pizzaId}
             isLoadingIngredients={fetcher.state === "loading"}
             ingredients={
-              fetcher?.data?.find((el) => el.id === item.pizzaId)
-                ?.ingredients ?? []
+              fetcher?.data?.find(
+                (el: IngredientsProps) => el.id === item.pizzaId
+              )?.ingredients ?? []
             }
           />
         ))}
@@ -117,7 +123,7 @@ function Order() {
   );
 }
 
-export async function loader({ params }: ActionParams) {
+export async function loader({ params }) {
   const order = await getOrder(params.orderId);
   return order;
 }
