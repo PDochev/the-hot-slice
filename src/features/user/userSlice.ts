@@ -28,10 +28,23 @@ export const fetchAddress = createAsyncThunk(
   }
 );
 
-const initialState = {
+type Position = {
+  latitude: number;
+  longitude: number;
+};
+
+type UserState = {
+  username: string;
+  status: string;
+  position: Position;
+  address: string;
+  error: string;
+};
+
+const initialState: UserState = {
   username: "",
   status: "idle",
-  position: {},
+  position: { latitude: 0, longitude: 0 },
   address: "",
   error: "",
 };

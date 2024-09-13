@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAddress } from "../user/userSlice";
 import { clearCart, getCart, getTotalCartPrice } from "../cart/cartSlice";
 import EmptyCart from "../cart/EmptyCart";
-import store from "../../store";
+import store, { AppDispatch } from "../../store";
 import { formatCurrency } from "../../utils/helpers";
 import { RootState } from "../../store";
 
@@ -18,6 +18,26 @@ const isValidPhone = (str: string) =>
 
 type OrderErrors = {
   phone?: string;
+};
+
+type FormErrors = {
+  phone?: string;
+};
+
+type OrderProps = {
+  id: number;
+  status: string;
+  priority: boolean;
+  priorityPrice: number;
+  orderPrice: number;
+  estimatedDelivery: string;
+  cart: {
+    pizzaId: number;
+    name: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
+  }[];
 };
 
 // const fakeCart = [
@@ -58,7 +78,7 @@ function CreateOrder() {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
 
-  const formErrors = useActionData();
+  const formErrors = useActionData() as FormErrors;
   const dispatch = useDispatch();
 
   const cart = useSelector(getCart);
@@ -119,9 +139,9 @@ function CreateOrder() {
               <Button
                 disabled={isLoadingAddress}
                 type="small"
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                   e.preventDefault();
-                  dispatch(fetchAddress());
+                  (dispatch as AppDispatch)(fetchAddress());
                 }}
               >
                 Get position
@@ -136,7 +156,7 @@ function CreateOrder() {
             type="checkbox"
             name="priority"
             id="priority"
-            value={withPriority}
+            value={withPriority.toString()}
             onChange={(e) => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority" className="font-medium">
@@ -166,17 +186,21 @@ function CreateOrder() {
   );
 }
 
-export async function action({ request }) {
+import { ActionFunctionArgs } from "react-router-dom";
+
+export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
   const order = {
     ...data,
-    cart: JSON.parse(data.cart),
+    cart: JSON.parse(data.cart as string),
     priority: data.priority === "true",
   };
 
-  const errors = {} as OrderErrors
+  const errors = {} as OrderErrors;
+
+  // @ts-ignore
   if (!isValidPhone(order.phone))
     errors.phone =
       "Please give us your correct phone number. We might need it to contact you.";
@@ -185,7 +209,7 @@ export async function action({ request }) {
 
   // If everything is okay, create new order and redirect
 
-  const newOrder = await createOrder(order);
+  const newOrder = await createOrder(order as OrderProps);
   // Do not overuse
   store.dispatch(clearCart());
   return redirect(`/order/${newOrder.id}`);
