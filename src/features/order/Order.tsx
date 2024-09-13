@@ -1,7 +1,7 @@
 // Test ID: IIDSAT
 
 import OrderItem from "./OrderItem";
-
+import { LoaderFunctionArgs } from "react-router-dom";
 import { useFetcher, useLoaderData } from "react-router-dom";
 import { getOrder } from "../../services/apiRestaurant";
 import {
@@ -11,12 +11,6 @@ import {
 } from "../../utils/helpers";
 import { useEffect } from "react";
 import UpdateOrder from "./UpdateOrder";
-
-type ActionParams = {
-  params: {
-    orderId: string;
-  };
-};
 
 type IngredientsProps = {
   id: number;
@@ -123,8 +117,9 @@ function Order() {
   );
 }
 
-export async function loader({ params }) {
-  const order = await getOrder(params.orderId);
+export async function loader({ params }: LoaderFunctionArgs) {
+  const { orderId } = params as { orderId: string };
+  const order = await getOrder(orderId);
   return order;
 }
 
