@@ -15,7 +15,7 @@ export default {
         screen: "100dvh",
       },
       colors: {
-        background: "#f1efe9",
+        background: "#f8f9fa",
         foreground: "#44403c",
         primary: "#fce181",
         secondary: "#026670",
