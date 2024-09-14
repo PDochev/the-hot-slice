@@ -89,7 +89,7 @@ function CreateOrder() {
   if (!cart.length) return <EmptyCart />;
 
   return (
-    <div className="px-4 py-6">
+    <div className="px-4 py-6 md:mx-auto">
       <h2 className="mb-8 text-xl font-semibold">Ready to order? Let's go!</h2>
 
       {/* <Form method="POST" action="/order/new"> */}
