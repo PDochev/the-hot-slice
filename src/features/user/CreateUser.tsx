@@ -24,6 +24,7 @@ function CreateUser() {
       </p>
 
       <input
+      
         type="text"
         placeholder="Your full name"
         value={username}

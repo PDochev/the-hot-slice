@@ -11,7 +11,7 @@ function Home() {
         The best pizza.
         <br />
         <div className="mt-4">
-          <span className="text-yellow-500">
+          <span className="text-secondary">
             Straight out of the oven, straight to you.
           </span>
         </div>

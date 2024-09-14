@@ -17,6 +17,12 @@ export default {
       colors: {
         background: "#f1efe9",
         foreground: "#44403c",
+        primary: "#fce181",
+        secondary: "#026670",
+        accent: "#9fedd7",
+        muted: "#84b19e",
+        border: "#fef9c7",
+        destructive: "#e43d12",
       },
     },
   },

@@ -108,7 +108,13 @@ function CreateOrder() {
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Phone number</label>
           <div className="grow">
-            <input className="input w-full" type="tel" name="phone" placeholder="Enter a valid phone number" required />
+            <input
+              className="input w-full"
+              type="tel"
+              name="phone"
+              placeholder="Enter a valid phone number"
+              required
+            />
             {formErrors?.phone && (
               <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
                 {formErrors.phone}
@@ -152,7 +158,7 @@ function CreateOrder() {
 
         <div className="mb-12 flex items-center gap-5">
           <input
-            className="h-6 w-6 accent-yellow-400 focus:outline-none focus:ring focus:ring-yellow-400 focus:ring-offset-2"
+            className="h-6 w-6 accent-accent focus:outline-none focus:ring focus:ring-accent focus:ring-offset-2 cursor-pointer"
             type="checkbox"
             name="priority"
             id="priority"
