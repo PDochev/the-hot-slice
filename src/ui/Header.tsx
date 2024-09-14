@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SearchOrder from "../features/order/SearchOrder";
 import Username from "../features/user/Username";
-import logo_img from "../assets/logo.png";
+import logo_img from "/logo.png";
 
 function Header() {
   return (
