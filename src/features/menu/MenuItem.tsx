@@ -33,18 +33,18 @@ function MenuItem({ pizza }: { pizza: PizzaType }) {
     dispatch(addItem(newItem));
   }
   return (
-    <li className="flex gap-4 py-2">
+    <li className="flex px-2 md:px-6 gap-4 py-8  mb-2 mt-2  border rounded shadow-sm ">
       <img
         src={imageUrl}
         alt={name}
-        className={`h-24 ${soldOut ? "opacity-70 grayscale" : ""}`}
+        className={`h-24 rounded md:h-32 md:w-32  ${soldOut ? "opacity-70 grayscale" : ""}`}
       />
       <div className="flex grow flex-col pt-0.5">
         <p className="font-medium">{name}</p>
         <p className="text-sm capitalize italic text-stone-500">
           {ingredients.join(", ")}
         </p>
-        <div className="mt-auto flex items-center justify-between">
+        <div className="mt-4 md:mt-10 flex items-center justify-between ">
           {!soldOut ? (
             <p className="text-sm">{formatCurrency(unitPrice)}</p>
           ) : (

@@ -9,6 +9,7 @@ export default {
     extend: {
       fontSize: {
         huge: ["80rem", { lineHeight: "1" }],
+        extraSmall: ["0.5rem", { lineHeight: "1" }],
       },
       height: {
         screen: "100dvh",
