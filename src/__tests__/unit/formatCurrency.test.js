@@ -1,4 +1,3 @@
-import { expect } from "vitest";
 import { formatCurrency } from "../../utils/helpers";
 
 describe("Format Currency in €", () => {
