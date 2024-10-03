@@ -53,10 +53,10 @@ describe("Format Currency in €", () => {
   });
 
   test("handles invalid string", () => {
-    expect(formatCurrency("abc")).toBe("€NaN");
+    expect(formatCurrency(Number("abc"))).toBe("€NaN");
   });
 
   test("handles string conversion", () => {
-    expect(formatCurrency("1.00")).toBe("€1.00");
+    expect(formatCurrency(Number("1.00"))).toBe("€1.00");
   });
 });
