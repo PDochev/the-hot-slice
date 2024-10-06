@@ -2,7 +2,7 @@ import { render, screen } from "../../../test-utils/testing-library-utils";
 import userEvent from "@testing-library/user-event";
 import CreateUser from "../CreateUser";
 
-test("renders the create user form", async () => {
+test("Renders the create user form and input responds to text input", async () => {
   const user = userEvent.setup();
   render(<CreateUser />);
 
@@ -13,6 +13,7 @@ test("renders the create user form", async () => {
 
   const input = screen.getByPlaceholderText("Your full name");
   expect(input).toBeInTheDocument();
+  expect(input).toHaveValue("");
 
   await user.clear(input);
   await user.type(input, "John Doe");
