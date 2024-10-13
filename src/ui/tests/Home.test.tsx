@@ -1,8 +1,13 @@
 import { render, screen } from "../../test-utils/testing-library-utils";
 import Home from "../Home";
+import { BrowserRouter } from "react-router-dom";
 
 test("Display the Home page heading and subheading", () => {
-  render(<Home />);
+  render(
+    <BrowserRouter>
+      <Home />
+    </BrowserRouter>
+  );
 
   const pizzaHeading = screen.getByRole("heading", {
     name: /the best pizza./i,

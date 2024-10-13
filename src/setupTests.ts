@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
 import { beforeAll, afterEach, afterAll } from "vitest";
 
+// @ts-ignore
 import { server } from "./mocks/server";
 // import * as matchers from "@testing-library/jest-dom/matchers";
 // import { expect } from "vitest";

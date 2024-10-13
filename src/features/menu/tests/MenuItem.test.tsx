@@ -1,17 +1,11 @@
 import { render, screen } from "../../../test-utils/testing-library-utils";
 import MenuItem from "../MenuItem";
 import userEvent from "@testing-library/user-event";
+import { getMenu } from "../../../services/apiRestaurant";
 
-describe("MenuItem component", () => {
-  const mockPizza = {
-    id: 1,
-    name: "Margherita",
-    unitPrice: 12,
-    ingredients: ["tomato", "mozzarella", "basil"],
-    soldOut: false,
-    imageUrl:
-      "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg",
-  };
+describe("MenuItem component", async () => {
+  const menu = await getMenu();
+  const mockPizza = menu[0];
 
   test("displays correct pizza image and name", async () => {
     render(<MenuItem pizza={mockPizza} />);

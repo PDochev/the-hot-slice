@@ -1,20 +1,12 @@
-import { render, screen } from "../../../test-utils/testing-library-utils";
+import { render, screen } from "../test-utils/testing-library-utils";
+import App from "../App";
 import userEvent from "@testing-library/user-event";
-import CreateUser from "../CreateUser";
-import { BrowserRouter } from "react-router-dom";
 
-test("Renders the create user form and input responds to text input", async () => {
+test("Order phases for happy path", async () => {
   const user = userEvent.setup();
-  render(
-    <BrowserRouter>
-      <CreateUser />
-    </BrowserRouter>
-  );
+  render(<App />);
 
-  const welcomeMessage = screen.getByText(
-    /welcome! please start by telling us your name:/i
-  );
-  expect(welcomeMessage).toBeInTheDocument();
+  // Enter you name
 
   const input = screen.getByPlaceholderText("Your full name");
   expect(input).toBeInTheDocument();
@@ -28,4 +20,11 @@ test("Renders the create user form and input responds to text input", async () =
     name: /start ordering/i,
   });
   expect(startOrderingButton).toBeInTheDocument();
+  await user.click(startOrderingButton);
+
+  // Check if the username is in the document (navigation bar)
+  const userName = screen.getByText("John Doe");
+  expect(userName).toBeInTheDocument();
+
+  // Add pizzas to the order
 });

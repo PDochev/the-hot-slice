@@ -1,8 +1,12 @@
 import { render, screen } from "../../test-utils/testing-library-utils";
 import Header from "../Header";
-
+import { BrowserRouter } from "react-router-dom";
 test("Display the logo image and company name", () => {
-  render(<Header />);
+  render(
+    <BrowserRouter>
+      <Header />
+    </BrowserRouter>
+  );
 
   const logoImage = screen.getByRole("img", { name: /the hot slice co./i });
   expect(logoImage).toBeInTheDocument();
