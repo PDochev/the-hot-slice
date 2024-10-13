@@ -1,6 +1,5 @@
 import { render, screen } from "../../test-utils/testing-library-utils";
 import Home from "../Home";
-import { expect } from "vitest";
 
 test("Display the Home page heading and subheading", () => {
   render(<Home />);
