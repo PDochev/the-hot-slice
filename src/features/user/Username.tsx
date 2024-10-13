@@ -7,7 +7,12 @@ function Username() {
   if (!username) return null;
 
   return (
-    <div className="hidden text-sm font-semibold md:block">{username}</div>
+    <div
+      data-cy="userNameNav"
+      className="hidden text-sm font-semibold md:block"
+    >
+      {username}
+    </div>
   );
 }
 

@@ -116,7 +116,10 @@ function CreateOrder() {
               required
             />
             {formErrors?.phone && (
-              <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
+              <p
+                data-cy="phoneError"
+                className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700"
+              >
                 {formErrors.phone}
               </p>
             )}
@@ -143,6 +146,7 @@ function CreateOrder() {
           {!position.latitude && !position.longitude && (
             <span className="absolute right-[3px] top-[35px]  z-50 md:right-[5px] md:top-[5px]">
               <Button
+                data-cy="getPositionBtn"
                 disabled={isLoadingAddress}
                 type="small"
                 onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
@@ -181,7 +185,11 @@ function CreateOrder() {
                 : ""
             }
           />
-          <Button disabled={isSubmitting || isLoadingAddress} type="primary">
+          <Button
+            data-cy="btnOrder"
+            disabled={isSubmitting || isLoadingAddress}
+            type="primary"
+          >
             {isSubmitting
               ? "Placing order...."
               : `Order now from ${formatCurrency(totalPrice)}`}

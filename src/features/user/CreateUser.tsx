@@ -24,6 +24,7 @@ function CreateUser() {
       </p>
 
       <input
+        data-cy="username-input"
         type="text"
         placeholder="Your full name"
         value={username}
