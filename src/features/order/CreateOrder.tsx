@@ -117,7 +117,7 @@ function CreateOrder() {
             />
             {formErrors?.phone && (
               <p
-                data-cy="phoneError"
+                data-testid="phoneError"
                 className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700"
               >
                 {formErrors.phone}
@@ -185,11 +185,7 @@ function CreateOrder() {
                 : ""
             }
           />
-          <Button
-            data-cy="btnOrder"
-            disabled={isSubmitting || isLoadingAddress}
-            type="primary"
-          >
+          <Button disabled={isSubmitting || isLoadingAddress} type="primary">
             {isSubmitting
               ? "Placing order...."
               : `Order now from ${formatCurrency(totalPrice)}`}

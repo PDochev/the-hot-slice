@@ -18,10 +18,10 @@ function OrderItem({ item, isLoadingIngredients, ingredients }: OrderItemType) {
   return (
     <li className="space-y-1 py-3">
       <div className="flex items-center justify-between gap-4 text-sm">
-        <p data-cy="orderPizza">
+        <p data-testid="orderPizza">
           <span className="font-bold">{quantity}&times;</span> {name}
         </p>
-        <p data-cy="orderPrice" className="font-bold">{formatCurrency(totalPrice)}</p>
+        <p data-testid="orderPrice" className="font-bold">{formatCurrency(totalPrice)}</p>
       </div>
       <p className="text-sm capitalize italic text-stone-500">
         {isLoadingIngredients ? "Loading..." : ingredients.join(", ")}

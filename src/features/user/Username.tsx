@@ -8,7 +8,7 @@ function Username() {
 
   return (
     <div
-      data-cy="userNameNav"
+      data-testid="userNameNav"
       className="hidden text-sm font-semibold md:block"
     >
       {username}

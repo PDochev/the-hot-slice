@@ -63,11 +63,17 @@ function Order() {
 
         <div className="space-x-2">
           {priority && (
-            <span className="rounded-full bg-destructive px-3 py-1 text-sm font-semibold uppercase tracking-wide text-red-50">
+            <span
+              data-testid="priority"
+              className="rounded-full bg-destructive px-3 py-1 text-sm font-semibold uppercase tracking-wide text-red-50"
+            >
               Priority
             </span>
           )}
-          <span className="rounded-full bg-accent px-3 py-1 text-sm font-semibold uppercase tracking-wide text-stone-700">
+          <span
+            data-testid="statusOrder"
+            className="rounded-full bg-accent px-3 py-1 text-sm font-semibold uppercase tracking-wide text-stone-700"
+          >
             {status} order
           </span>
         </div>
@@ -101,17 +107,20 @@ function Order() {
 
       <div className="space-y-2 bg-stone-200 px-6 py-5 rounded">
         <p
-          data-cy="orderPricePizzaOnly"
+          data-testid="orderPricePizza"
           className="text-sm font-medium text-stone-600"
         >
           Price pizza: {formatCurrency(orderPrice)}
         </p>
         {priority && (
-          <p data-cy="priorityPrice"  className="text-sm font-medium text-stone-600">
+          <p
+            data-testid="priorityPrice"
+            className="text-sm font-medium text-stone-600"
+          >
             Price priority: {formatCurrency(priorityPrice)}
           </p>
         )}
-        <p data-cy="payOnDelivery" className="font-bold">
+        <p data-testid="payOnDelivery" className="font-bold">
           To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
         </p>
       </div>
