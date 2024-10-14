@@ -1,4 +1,4 @@
-describe("Menu functionality functionality", () => {
+describe("Menu functionality", () => {
   it("verify that the user can increase the quantity of a pizza", () => {
     cy.visit("/menu");
 
