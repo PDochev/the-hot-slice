@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest --watch"
+    "test": "vitest --watch",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
