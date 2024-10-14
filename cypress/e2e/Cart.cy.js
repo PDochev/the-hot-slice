@@ -11,6 +11,57 @@ describe("Cart functionality", () => {
     cy.url().should("include", "/menu");
   });
 
+  it("Verify that the user can back to the menu page from the cart page by clicking on the Back to menu button", () => {
+    cy.visit("/menu");
+    cy.get("button").first().should("have.text", "Add to cart");
+    // Add one Margherita pizza to the cart
+    cy.get("button").first().click();
+    // Check if the quantity of the pizza is displayed in the cart overview. Should be 1 pizza
+    cy.get('[data-testid="quantityOfPizzasInTheCartOverview"]').should(
+      "have.text",
+      "1 pizzas"
+    );
+
+    // Check if the first pizza has the correct price in the Cart Overview
+    cy.get('[data-testid="totalPriceCartOverview"]').should(
+      "have.text",
+      "€12.00"
+    );
+
+    // Check if the button has the correct text
+    cy.get('[data-testid="openCartBtn"]').should("have.text", "Open cart →");
+    // Click on the button that opens the cart
+    cy.get('[data-testid="openCartBtn"]').click();
+
+    // Check if the button leads to the correct page , the cart page
+    cy.url().should("include", "/cart");
+
+    cy.get('[data-testid="pizzasInCart"]').should("have.text", "1× Margherita");
+    // Check if the total price is displayed in the cart page
+    cy.get('[data-testid="pizzaTotalPriceInCart"]').should(
+      "have.text",
+      "€12.00"
+    );
+
+    cy.contains("Back to menu").should("exist");
+    cy.contains("Back to menu").should("exist").click();
+
+    // Check if the user is redirected to the menu page
+    cy.url().should("include", "/menu");
+
+    // Check if the pizza is still displayed in the cart overview
+    cy.get('[data-testid="quantityOfPizzasInTheCartOverview"]').should(
+      "have.text",
+      "1 pizzas"
+    );
+
+    // Check if the first pizza has the correct price in the Cart Overview
+    cy.get('[data-testid="totalPriceCartOverview"]').should(
+      "have.text",
+      "€12.00"
+    );
+  });
+
   it("verify that the user can increase the quantity of a pizza from the cart page", () => {
     cy.visit("/menu");
     cy.get("button").first().should("have.text", "Add to cart");
