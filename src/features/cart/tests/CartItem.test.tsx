@@ -1,6 +1,6 @@
 import { render, screen } from "../../../test-utils/testing-library-utils";
 import CartItem from "../CartItem";
-import userEvent from "@testing-library/user-event";
+// import userEvent from "@testing-library/user-event";
 
 describe("CartItem", () => {
   const mockCartItem = {
@@ -12,7 +12,7 @@ describe("CartItem", () => {
   };
 
   test("Display the cart item", async () => {
-    const user = userEvent.setup();
+    // const user = userEvent.setup();
     render(<CartItem item={mockCartItem} />);
 
     const pizzaName = screen.getByText(/1× mediterranean/i);
