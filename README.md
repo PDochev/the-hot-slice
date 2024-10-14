@@ -18,33 +18,17 @@ The Hot Slice is a pizza ordering system. The application allows users to select
 
 1. Clone the repository: https://github.com/PDochev/the-hot-slice.git
 
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
+2. Install dependencies: Run `npm isntall` in the root directory.
 
 3. Commands:
 
-   - Run the application:
+   Start the development server: `npm run dev`
 
-     ```js
-     npm run dev
-     ```
+   Run the tests: `npm run test`
 
-   - Run the tests:
+   Run the Cypress tests (E2E): `npm run cy:open`
 
-     ```js
-     npm run test
-     ```
-
-   - Run the Cypress tests (E2E):
-
-     **The server needs to be running in order to run the Cypress tests**
-
-     ```js
-     npm run cy:open
-     ```
+   **The server needs to be running in order to run the Cypress tests**
 
 ## Few things to consider when setting up the testing environment with Vitest and React Testing Library
 
