@@ -1,5 +1,7 @@
 # The Hot Slice - Pizza Ordering System
 
+https://thehotslice.netlify.app/
+
 ## Introduction
 
 The Hot Slice is a pizza ordering system. The application allows users to select a pizzas and make an order. The user can add the pizza to the cart and proceed to the checkout. The user can also view the cart and remove items from it. The application is built with React, TypeScript, Redux, and Tailwindcss. It was primarily developed as a learning project to practice writing unit, integration, and end-to-end tests.
