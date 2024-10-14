@@ -28,19 +28,21 @@ The Hot Slice is a pizza ordering system. The application allows users to select
 
    - Run the application:
 
-     ```bash
+     ```js
      npm run dev
      ```
 
    - Run the tests:
 
-     ```bash
+     ```js
      npm run test
      ```
 
    - Run the Cypress tests (E2E):
 
-     ```bash
+     **The server needs to be running in order to run the Cypress tests**
+
+     ```js
      npm run cy:open
      ```
 
@@ -110,7 +112,11 @@ Update _vite.config.js_ based on the [Vitest Testing Library example](https://gi
   },
 ```
 
-## Add `"types": ["vitest/globals", "@testing-library/jest-dom"],` to _tsconfig.app.json_ in the `compilerOptions`.
+## TypeScript Types for Vitest and Jest-Dom
+
+We need to tell TypeScript to include type definitions for Vitest global variables and Jest DOM matchers.
+
+Add "types": ["vitest/globals", "@testing-library/jest-dom"], to _tsconfig.app.json_ in the compilerOptions object:
 
 ```js
    "compilerOptions": {
