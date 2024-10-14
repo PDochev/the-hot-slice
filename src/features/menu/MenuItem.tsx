@@ -48,7 +48,9 @@ function MenuItem({ pizza }: { pizza: PizzaType }) {
         </p>
         <div className="mt-4 md:mt-10 flex items-center justify-between  lg:gap-4 lg:flex-col ">
           {!soldOut ? (
-            <p className="text-sm">{formatCurrency(unitPrice)}</p>
+            <p data-testid="pizzaPriceSingle" className="text-sm">
+              {formatCurrency(unitPrice)}
+            </p>
           ) : (
             <p className="text-sm font-medium uppercase text-stone-500">
               Sold out
@@ -66,7 +68,11 @@ function MenuItem({ pizza }: { pizza: PizzaType }) {
           )}
 
           {!soldOut && !isInCart && (
-            <Button data-testid="btnAddToCart"  type="small" onClick={handleAddToCart}>
+            <Button
+              data-testid="btnAddToCart"
+              type="small"
+              onClick={handleAddToCart}
+            >
               Add to cart
             </Button>
           )}

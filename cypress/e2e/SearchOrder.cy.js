@@ -36,7 +36,7 @@ describe("Search Order functionality", () => {
       "Search order #"
     );
 
-    // Type incorrect order number in the search input
+    // Type a correct order number in the search input
     cy.get('[data-testid="searchOrderInput"]').type("IIDSAT");
     cy.get('[data-testid="searchOrderInput"]').type("{enter}");
 
