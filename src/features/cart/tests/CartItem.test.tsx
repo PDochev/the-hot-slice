@@ -1,8 +1,7 @@
 import { render, screen } from "../../../test-utils/testing-library-utils";
 import CartItem from "../CartItem";
-// import userEvent from "@testing-library/user-event";
 
-describe("CartItem", () => {
+describe("CartItem functionality", () => {
   const mockCartItem = {
     pizzaId: 12,
     name: "Mediterranean",
@@ -11,8 +10,7 @@ describe("CartItem", () => {
     totalPrice: 16,
   };
 
-  test("Display the cart item", async () => {
-    // const user = userEvent.setup();
+  test("should display the display the correct cart items in the cart (pizza name, price and buttons)", async () => {
     render(<CartItem item={mockCartItem} />);
 
     const pizzaName = screen.getByText(/1× mediterranean/i);
@@ -33,8 +31,5 @@ describe("CartItem", () => {
     expect(buttonAdd).toBeInTheDocument();
     expect(buttonRemove).toBeInTheDocument();
     expect(deleteButton).toBeInTheDocument();
-
-    // const orderPizza = screen.getByRole("button", { name: /order pizza/i });
-    // expect(orderPizza).toBeInTheDocument();
   });
 });

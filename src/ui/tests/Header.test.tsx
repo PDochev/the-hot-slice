@@ -1,7 +1,7 @@
 import { render, screen } from "../../test-utils/testing-library-utils";
 import Header from "../Header";
 import { BrowserRouter } from "react-router-dom";
-test("Display the logo image and company name", () => {
+test("should display the logo image , company name and search order", () => {
   render(
     <BrowserRouter>
       <Header />
@@ -15,4 +15,8 @@ test("Display the logo image and company name", () => {
 
   const companyName = screen.getByText("The Hot Slice Co.");
   expect(companyName).toBeInTheDocument();
+
+  const searchInput = screen.getByPlaceholderText("Search order #");
+  expect(searchInput).toBeInTheDocument();
+  expect(searchInput).toHaveValue("");
 });

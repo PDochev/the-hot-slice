@@ -2,7 +2,7 @@ import { render, screen } from "../../test-utils/testing-library-utils";
 import Home from "../Home";
 import { BrowserRouter } from "react-router-dom";
 
-test("Display the Home page heading and subheading", () => {
+test("should display the Home page heading and subheading", () => {
   render(
     <BrowserRouter>
       <Home />

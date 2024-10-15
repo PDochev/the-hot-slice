@@ -23,4 +23,31 @@ export const handlers = [
       },
     ]);
   }),
+  http.get("https://react-fast-pizza-api.onrender.com/api/order/1ZUQYB", () => {
+    return HttpResponse.json([
+      {
+        status: "success",
+        data: {
+          customer: "Plamen",
+          status: "preparing",
+          priority: true,
+          cart: [
+            {
+              pizzaId: 1,
+              name: "Margherita",
+              quantity: 1,
+              unitPrice: 12,
+              totalPrice: 12,
+              addIngredients: [],
+              removeIngredients: [],
+              id: "1ZUQYB",
+              estimatedDelivery: "2024-10-15T10:04:53.626Z",
+            },
+          ],
+          orderPrice: 12,
+          priorityPrice: 2,
+        },
+      },
+    ]);
+  }),
 ];

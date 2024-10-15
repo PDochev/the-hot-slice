@@ -6,11 +6,7 @@ import store from "../store";
 import { ReactNode, ReactElement } from "react";
 
 const AllTheProviders = ({ children }: { children: ReactNode }) => {
-  return (
-    // <BrowserRouter>
-    <Provider store={store}>{children}</Provider>
-    // </BrowserRouter>
-  );
+  return <Provider store={store}>{children}</Provider>;
 };
 
 const renderWithReduxStore = (

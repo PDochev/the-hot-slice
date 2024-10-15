@@ -3,7 +3,7 @@ import MenuItem from "../MenuItem";
 import userEvent from "@testing-library/user-event";
 import { getMenu } from "../../../services/apiRestaurant";
 
-describe("MenuItem component", async () => {
+describe("MenuItem component functionality", async () => {
   const menu = await getMenu();
   const mockPizza = menu[0];
 
