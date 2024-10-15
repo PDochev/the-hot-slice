@@ -165,23 +165,23 @@ describe("Menu functionality", () => {
       .first()
       .should("have.text", "€12.00");
 
+    cy.get('[data-testid="pizzaName"]')
+      .first()
+      .should("have.text", "Margherita");
     cy.get("button").first().should("have.text", "Add to cart");
     // Add one Margherita pizza to the cart
     cy.get("button").first().click();
 
-    // SHOULD AVOID QUERY BY CLASSNAME
     // Check the price of the Romana pizza
-    cy.get(
-      ':nth-child(3) > .grow > .mt-4 > [data-testid="pizzaPriceSingle"]'
-    ).should("have.text", "€15.00");
+    cy.get('[data-testid="pizzaPriceSingle"]')
+      .eq(1)
+      .should("have.text", "€15.00");
 
-    cy.get(":nth-child(3) > .grow > .mt-4 > .inline-block").should(
-      "have.text",
-      "Add to cart"
-    );
+    cy.get("li button").eq(3).should("have.text", "Add to cart");
+
     // Add one Romana pizza to the cart
-    // SHOULD AVOID QUERY BY CLASSNAME
-    cy.get(":nth-child(3) > .grow > .mt-4 > .inline-block").click();
+
+    cy.get("li button").eq(3).click();
 
     // Check if the quantity of the pizzas is displayed in the cart overview. Should be 2 pizza
     cy.get('[data-testid="quantityOfPizzasInTheCartOverview"]').should(

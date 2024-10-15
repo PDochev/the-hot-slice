@@ -338,23 +338,49 @@ describe("Cart functionality", () => {
     // Add one Margherita pizza to the cart
     cy.get("button").first().click();
 
-    // SHOULD AVOID QUERY BY CLASSNAME
-    cy.get(":nth-child(3) > .grow > .mt-4 > .inline-block").should(
-      "have.text",
-      "Add to cart"
-    );
+    cy.get("li button").eq(3).should("have.text", "Add to cart");
 
     // Add one Romana pizza to the cart
-    // SHOULD AVOID QUERY BY CLASSNAME
-    cy.get(":nth-child(3) > .grow > .mt-4 > .inline-block").click();
+
+    cy.get("li button").eq(3).click();
 
     // Check if the button has the correct text
     cy.get('[data-testid="openCartBtn"]').should("have.text", "Open cart →");
     // Click on the button that opens the cart
     cy.get('[data-testid="openCartBtn"]').click();
 
+    cy.get('[data-testid="pizzasInCart"]').should(
+      "have.text",
+      "1× Margherita1× Romana"
+    );
+    // Check if the total price is displayed in the cart page
+    cy.get('[data-testid="pizzaTotalPriceInCart"]').should(
+      "have.text",
+      "€12.00€15.00"
+    );
+
+    // Check if the quantity of the pizza is displayed in the cart overview. Should be 2 pizzas
+    cy.get('[data-testid="quantityOfPizzasInTheCartOverview"]').should(
+      "have.text",
+      "2 pizzas"
+    );
+
+    // Check if the total price is correct in the Cart Overview
+    cy.get('[data-testid="totalPriceCartOverview"]').should(
+      "have.text",
+      "€27.00"
+    );
+
     // Press the clear cart button
     cy.get("button").contains("Clear").click();
+
+    // Check that the cart overview is empty, not pizzas in the cart
+    cy.get('[data-testid="quantityOfPizzasInTheCartOverview"]').should(
+      "not.exist"
+    );
+
+    // Check that the cart overview is empty, not total price in the cart
+    cy.get('[data-testid="totalPriceCartOverview"]').should("not.exist");
 
     // Check if the cart is empty
     cy.contains("Your cart is still empty. Start adding some pizzas :)").should(
@@ -381,24 +407,43 @@ describe("Cart functionality", () => {
     // Add one Margherita pizza to the cart
     cy.get("button").first().click();
 
-    // SHOULD AVOID QUERY BY CLASSNAME
     // Check the price of the Romana pizza
-    cy.get(
-      ':nth-child(3) > .grow > .mt-4 > [data-testid="pizzaPriceSingle"]'
-    ).should("have.text", "€15.00");
+    cy.get('[data-testid="pizzaPriceSingle"]')
+      .eq(1)
+      .should("have.text", "€15.00");
 
-    cy.get(":nth-child(3) > .grow > .mt-4 > .inline-block").should(
-      "have.text",
-      "Add to cart"
-    );
+    cy.get("li button").eq(3).should("have.text", "Add to cart");
+
     // Add one Romana pizza to the cart
-    // SHOULD AVOID QUERY BY CLASSNAME
-    cy.get(":nth-child(3) > .grow > .mt-4 > .inline-block").click();
+    cy.get("li button").eq(3).click();
 
     // Check if the button has the correct text
     cy.get('[data-testid="openCartBtn"]').should("have.text", "Open cart →");
     // Click on the button that opens the cart
     cy.get('[data-testid="openCartBtn"]').click();
+
+    //  Check that there are 2 pizzas in the cart
+    cy.get('[data-testid="pizzasInCart"]').should(
+      "have.text",
+      "1× Margherita1× Romana"
+    );
+    // Check that there are 2 prices in the cart
+    cy.get('[data-testid="pizzaTotalPriceInCart"]').should(
+      "have.text",
+      "€12.00€15.00"
+    );
+
+    // Check if the quantity of the pizza is displayed in the cart overview. Should be 2 pizzas
+    cy.get('[data-testid="quantityOfPizzasInTheCartOverview"]').should(
+      "have.text",
+      "2 pizzas"
+    );
+
+    // Check if the total price is correct in the Cart Overview , 12€ + 15€ = 27€
+    cy.get('[data-testid="totalPriceCartOverview"]').should(
+      "have.text",
+      "€27.00"
+    );
 
     // Delete Margherita pizza from the cart
     cy.get("button").contains("Delete").click();
@@ -411,15 +456,27 @@ describe("Cart functionality", () => {
       "€15.00"
     );
 
-    // Check if the Margherita pizza is not in the cart
+    // Check that the Margherita pizza is not in the cart
     cy.get('[data-testid="pizzasInCart"]').should(
       "not.have.text",
       "1× Margherita"
     );
-    // Check if the price of the Margherita pizza is not displayed in the cart page
+    // Check that the price of the Margherita pizza is not displayed in the cart page
     cy.get('[data-testid="pizzaTotalPriceInCart"]').should(
       "not.have.text",
       "€12.00"
+    );
+
+    // Check if the quantity of the pizza is displayed in the cart overview. Should be 1 pizzas
+    cy.get('[data-testid="quantityOfPizzasInTheCartOverview"]').should(
+      "have.text",
+      "1 pizzas"
+    );
+
+    // Check if the total price is correct in the Cart Overview. Should be 15€ , the price of the Romana pizza
+    cy.get('[data-testid="totalPriceCartOverview"]').should(
+      "have.text",
+      "€15.00"
     );
   });
 });

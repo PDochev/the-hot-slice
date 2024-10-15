@@ -42,7 +42,7 @@ function MenuItem({ pizza }: { pizza: PizzaType }) {
         }`}
       />
       <div className="flex grow flex-col pt-0.5">
-        <p className="font-medium">{name}</p>
+        <p data-testid="pizzaName" className="font-medium">{name}</p>
         <p className="text-sm capitalize italic text-stone-500">
           {ingredients.join(", ")}
         </p>
